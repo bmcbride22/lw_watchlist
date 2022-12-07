@@ -1,0 +1,8 @@
+<h1>Movies</h1>
+<div>
+  <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <% @movies.each do |movie| %>
+      <%= render 'movie_card', movie: movie %>
+    <% end %>
+  </ul>
+</div>
