@@ -35,9 +35,9 @@
         <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <%= link_to "Popular Movies", movies_path, class: "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium", aria: { current: 'page'} %>
-          <%= link_to "My Lists", '#', class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
-          <%= link_to "New List", '#', class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
-          <%= link_to "Browse Movies", '#', class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "My Lists", lists_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "New List", new_list_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "Browse Movies", movies_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
         </div>
       </div>
     </div>

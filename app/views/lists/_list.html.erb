@@ -1,0 +1,12 @@
+<div id="<%= dom_id list %>" class="bg-white p-6 shadow-sm rounded overflow-hidden">
+<p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= list.name %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this list", list, class: "btn btn-primary" %>
+    <%= link_to 'Edit this list', edit_list_path(list), class: "btn btn-secondary" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
