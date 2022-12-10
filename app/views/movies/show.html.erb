@@ -76,52 +76,13 @@
     <!-- Product form -->
     <div class="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
       <section aria-labelledby="options-heading">
-        <h2 id="options-heading" class="sr-only">Product options</h2>
-        <form>
-          <div class="sm:flex sm:justify-between">
-            <!-- Size selector -->
-            <%# <fieldset>
-              <legend class="block text-sm font-medium text-gray-700">Size</legend>
-              <div class="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <div class="relative block cursor-pointer rounded-lg border border-gray-300 p-4 focus:outline-none">
-                  <input type="radio" name="size-choice" value="18L" class="sr-only" aria-labelledby="size-choice-0-label" aria-describedby="size-choice-0-description">
-                  <p id="size-choice-0-label" class="text-base font-medium text-gray-900">18L</p>
-                  <p id="size-choice-0-description" class="mt-1 text-sm text-gray-500">Perfect for a reasonable amount of snacks.</p>
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <div class="pointer-events-none absolute -inset-px rounded-lg border-2" aria-hidden="true"></div>
-                </div>
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <div class="relative block cursor-pointer rounded-lg border border-gray-300 p-4 focus:outline-none">
-                  <input type="radio" name="size-choice" value="20L" class="sr-only" aria-labelledby="size-choice-1-label" aria-describedby="size-choice-1-description">
-                  <p id="size-choice-1-label" class="text-base font-medium text-gray-900">20L</p>
-                  <p id="size-choice-1-description" class="mt-1 text-sm text-gray-500">Enough room for a serious amount of snacks.</p>
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <div class="pointer-events-none absolute -inset-px rounded-lg border-2" aria-hidden="true"></div>
-                </div>
-              </div>
-            </fieldset> %>
-          </div>
-          <div class="mt-4">
-            <%# <a href="#" class="group inline-flex text-sm text-gray-500 hover:text-gray-700">
-              <span>What size should I buy?</span>
-              <!-- Heroicon name: mini/question-mark-circle -->
-              <svg class="ml-2 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-              </svg> %>
-          </a>
-        </div>
-        <div class="mt-10">
-          <button type="submit" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Add to list</button>
-        </div>
-      </form>
-    </section>
+        <h2 id="options-heading" class="sr-only">Add to List</h2>
+        <%# create a form that allows the user to select the list they would like to add the movie to and set the comment for the bookmark %>
+        <%= form_for [@movie, @bookmark] do |f| %>
+          <%= f.collection_select :list, @lists, :id, :name, class: "flex w-full justify-center items-center mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
+          <%= f.submit "Add to list", class: "flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50" %>
+        <% end %>
+      </section>
+    </div>
   </div>
-</div>
 </div>

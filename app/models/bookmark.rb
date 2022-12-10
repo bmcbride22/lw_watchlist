@@ -24,5 +24,5 @@ class Bookmark < ApplicationRecord
   belongs_to :list
 
   validates_presence_of :comment
-  validates :comment, length: { min: 6 }
+  validates :comment, length: { minimum: 6 }
 end
