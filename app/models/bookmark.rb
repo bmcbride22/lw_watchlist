@@ -25,4 +25,5 @@ class Bookmark < ApplicationRecord
 
   validates_presence_of :comment
   validates :comment, length: { minimum: 6 }
+  validates_uniqueness_of :movie, scope: [:list]
 end

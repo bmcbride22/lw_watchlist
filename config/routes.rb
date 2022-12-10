@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  get 'bookmarks/delete'
-  resources :lists
+  resources :lists do
+    resources :bookmarks, only: %i[new create]
+  end
   root to: 'pages#home'
   resources :movies do
     resources :bookmarks, only: %i[new create]
   end
+  resources :bookmarks, only: :destroy
 end

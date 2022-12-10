@@ -66,23 +66,32 @@
           <p class="text-base text-gray-500"><%= @movie.synopsis %></p>
         </div>
       </section>
+      <section aria-labelledby="options-heading" class="mt-12">
+        <h2 id="options-heading" class="sr-only">Add to List</h2>
+        <%# create a form that allows the user to select the list they would like to add the movie to and set the comment for the bookmark %>
+        <%= form_for [@movie, @bookmark] do |f| %>
+          <%= f.collection_select :list_id, @lists, :id, :name, {prompt: true}, class: "flex w-full justify-center items-center my-1 p-2 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-neutral-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
+          <div>
+            <div class="flex justify-between mt-4">
+              <%= f.label :comment, '', class: 'block text-sm font-medium text-gray-700' %>
+              <span class="text-sm text-gray-500" id="email-optional">Required</span>
+              <% if @bookmark.errors.present? && @bookmark.errors.messages[:comment].present? %>
+                <span class="text-red-600"><%= @bookmark.errors.messages[:comment].join(', ') %></span>
+              <% end %>
+            </div>
+            <div class="mb-4">
+              <%= f.text_field :comment, class: "block w-full rounded-md border-gray-300 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: 'Please add a comment to your new bookmark' %>
+            </div>
+          </div>
+          <%= f.submit "Add to list", class: "flex w-full items-center justify-center rounded-md border border-transparent bg-neutral-600 py-3 px-8 text-base font-medium text-white hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2 focus:ring-offset-gray-50" %>
+        <% end %>
+      </section>
     </div>
     <!-- Product image -->
     <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
       <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg">
         <img src="<%= @movie.url %>" alt="Model wearing light green backpack with black canvas straps and front zipper pouch." class="h-full w-full object-cover object-center">
       </div>
-    </div>
-    <!-- Product form -->
-    <div class="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
-      <section aria-labelledby="options-heading">
-        <h2 id="options-heading" class="sr-only">Add to List</h2>
-        <%# create a form that allows the user to select the list they would like to add the movie to and set the comment for the bookmark %>
-        <%= form_for [@movie, @bookmark] do |f| %>
-          <%= f.collection_select :list, @lists, :id, :name, class: "flex w-full justify-center items-center mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
-          <%= f.submit "Add to list", class: "flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50" %>
-        <% end %>
-      </section>
     </div>
   </div>
 </div>

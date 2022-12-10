@@ -1,4 +1,4 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<!-- ><div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
@@ -11,4 +11,18 @@
       <%= link_to 'Back to lists', lists_path, class: "btn btn-danger" %>
     </div>
   </div>
+</div>
+-->
+<h1 class="pb-10 text-6xl align-text-top"><%= @list.name %></h1>
+<div>
+  <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div>
+        <%= link_to movie_path(bookmark.movie) do %>
+          <%= render 'movies/movie_card', movie: bookmark.movie %>
+        <% end %>
+        <%= button_to 'Remove from list', bookmark_path(bookmark), method: :delete %>
+      </div>
+    <% end %>
+  </ul>
 </div>
