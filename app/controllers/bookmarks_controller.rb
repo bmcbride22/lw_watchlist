@@ -7,12 +7,13 @@ class BookmarksController < ApplicationController
       @movie = Movie.find(params[:movie_id])
       @bookmark.movie = @movie
       if @bookmark.save
-        format.html { redirect_to @bookmark.movie, notice: 'Successfully added to list.' }
-        # redirect_to movie_path(@bookmark.movie)
+        flash[:notice] = 'Successfully added to list.'
+        redirect_to @bookmark.movie
+
       else
-        puts @bookmark.errors.messages
         @lists = List.all
-        format.html { render 'movies/show', status: :unprocessable_entity, alert: 'Unable to add to list.' }
+        flash.now[:alert] = 'Unable to add to list.'
+        render 'movies/show', status: :unprocessable_entity
 
       end
 
@@ -21,14 +22,15 @@ class BookmarksController < ApplicationController
       @bookmark = Bookmark.new(bookmark_params)
       @bookmark.list = @list
       if @bookmark.save
-        format.html { redirect_to @bookmark.list, notice: 'Successfully added to list.' }
+        flash[:notice] = 'Successfully added to list.'
+        redirect_to @bookmark.list
 
         # redirect_to list_path(@bookmark.list)
       else
         puts @bookmark.errors.messages
         @lists = List.all
-        format.html { render 'lists/show', status: :unprocessable_entity, alert: 'Unable to add to list.' }
-
+        flash.now[:alert] = 'Unable to add to list.'
+        render 'lists/show', status: :unprocessable_entity
         # render 'lists/show', status: 422
       end
     end

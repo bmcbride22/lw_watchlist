@@ -11,6 +11,9 @@
   <body id="vue">
     <div class="flex flex-col h-screen">
       <%= render "shared/navbar" %>
+      <% flash.each do |type, msg| %>
+        <%= render 'shared/flash', type: type, msg: msg %>
+      <% end %>
       <main class="container flex-1 mx-auto px-5 flex flex-col ">
         <%= yield %>
       </main>
