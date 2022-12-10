@@ -20,34 +20,32 @@ class ListsController < ApplicationController
   # POST /lists or /lists.json
   def create
     @list = List.new(list_params)
+    if @list.save
+      flash[:notice] = 'List successfully deleted.'
+      redirect_to @list
 
-    respond_to do |format|
-      if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
-
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    else
+      flash.now[:alert] = 'Unable to update list'
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /lists/1 or /lists/1.json
   def update
-    respond_to do |format|
-      if @list.update(list_params)
-        format.html { redirect_to @list, notice: 'List was successfully updated.' }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @list.update(list_params)
+      flash[:notice] = 'List successfully updated.'
+      redirect_to @list
+    else
+      flash.now[:alert] = 'Unable to update list'
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /lists/1 or /lists/1.json
   def destroy
     @list.destroy
-    respond_to do |format|
-      format.html { redirect_to lists_url, notice: 'List was successfully destroyed.' }
-    end
+    flash[:notice] = 'List successfully deleted.'
+    redirect_to lists_path
   end
 
   private

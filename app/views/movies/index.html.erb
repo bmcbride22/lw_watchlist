@@ -1,9 +1,15 @@
 <h1 class="pb-10 text-6xl align-text-top">Popular Movies</h1>
 <div>
   <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-    <% @movies.each do |movie| %>
-      <%= link_to movie_path(movie) do %>
-        <%= render 'movie_card', movie: movie %>
+    <% if @movies.length > 0 %>
+      <% @movies.each do |movie| %>
+        <%= link_to movie_path(movie) do %>
+          <%= render 'movie_card', movie: movie %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= link_to movies_path do %>
+        <%= render 'empty_movie_card', movie: movie %>
       <% end %>
     <% end %>
   </ul>

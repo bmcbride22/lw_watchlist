@@ -1,6 +1,5 @@
 <div class="mx-auto sm:w-9/12 md:w-6/12 w-full">
-  <h1 class="font-bold text-4xl">Editing list</h1>
-
+  <h1 class="font-bold text-4xl">Editing <%= @list.name %></h1>
   <%= render "form", list: @list %>
   <hr class="my-8">
   <%= link_to "Show this list", @list, class: "btn btn-secondary" %>
